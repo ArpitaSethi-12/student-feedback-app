@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Feedback Hub</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            padding: 40px 20px;
+        }
+
+        .main {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        .hero {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .hero-icon {
+            width: 80px;
+            height: 80px;
+            margin: auto;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 42px;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .hero h1 {
+            margin-top: 15px;
+            font-size: 38px;
+        }
+
+        .hero p {
+            margin-top: 8px;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* FORM CARD */
+
+        .card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+
+            margin-bottom: 30px;
+        }
+
+        .card h2 {
+            color: #4f46e5;
+            margin-bottom: 25px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #334155;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px;
+
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+
+            font-size: 15px;
+            outline: none;
+
+            transition: 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99,102,241,0.12);
+        }
+
+        textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        /* STARS */
+
+        .rating {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 35px;
+            color: #cbd5e1;
+            cursor: pointer;
+            margin: 0;
+            transition: 0.2s;
+        }
+
+        .rating label:hover,
+        .rating label:hover ~ label,
+        .rating input:checked ~ label {
+            color: #f59e0b;
+        }
+
+        /* BUTTON */
+
+        button {
+            width: 100%;
+            padding: 17px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: linear-gradient(
+                90deg,
+                #4f46e5,
+                #7c3aed,
+                #db2777
+            );
+
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(79,70,229,0.35);
+        }
+
+        /* FEEDBACK */
+
+        .feedback-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+        .feedback-header h2 {
+            color: #312e81;
+        }
+
+        .badge {
+            background: #ede9fe;
+            color: #6d28d9;
+
+            padding: 8px 15px;
+            border-radius: 20px;
+
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .feedback {
+            background: #f8fafc;
+
+            border-radius: 16px;
+
+            padding: 20px;
+
+            margin-bottom: 15px;
+
+            border-left: 5px solid #7c3aed;
+
+            transition: 0.3s;
+        }
+
+        .feedback:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+
+            background: linear-gradient(135deg,#6366f1,#ec4899);
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .user h3 {
+            color: #1e293b;
+        }
+
+        .user p {
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 3px;
+        }
+
+        .feedback-rating {
+            color: #f59e0b;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .feedback-text {
+            margin-top: 12px;
+
+            background: white;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            color: #475569;
+
+            line-height: 1.6;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 35px;
+
+            border: 2px dashed #c4b5fd;
+            border-radius: 15px;
+
+            color: #64748b;
+        }
+
+        .empty-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        @media(max-width: 650px) {
+
+            body {
+                padding: 20px 10px;
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="main">
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+        <div class="hero-icon">
+            🎓
+        </div>
+
+        <h1>Student Feedback Hub</h1>
+
+        <p>
+            Your voice matters. Share your learning experience with us.
+        </p>
+
+    </div>
+
+
+    <!-- FORM -->
+
+    <div class="card">
+
+        <h2>✨ Share Your Feedback</h2>
+
+        <form method="POST">
+
+            <div class="row">
+
+                <div class="field">
+
+                    <label>👤 Student Name</label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>📚 Course</label>
+
+                    <input
+                        type="text"
+                        name="course"
+                        placeholder="e.g. B.Tech Data Science"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>⭐ Rate Your Experience</label>
+
+                <div class="rating">
+
+                    <input type="radio" id="r5" name="rating" value="5">
+                    <label for="r5">★</label>
+
+                    <input type="radio" id="r4" name="rating" value="4">
+                    <label for="r4">★</label>
+
+                    <input type="radio" id="r3" name="rating" value="3">
+                    <label for="r3">★</label>
+
+                    <input type="radio" id="r2" name="rating" value="2">
+                    <label for="r2">★</label>
+
+                    <input type="radio" id="r1" name="rating" value="1">
+                    <label for="r1">★</label>
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>💬 Your Feedback</label>
+
+                <textarea
+                    name="feedback"
+                    placeholder="Tell us about your experience..."
+                    maxlength="300"
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <button type="submit">
+                🚀 Submit Feedback
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- SUBMITTED FEEDBACK -->
+
+    <div class="card">
+
+        <div class="feedback-header">
+
+            <h2>💜 Recent Feedback</h2>
+
+            <span class="badge">
+                {{ feedbacks|length }} Responses
+            </span>
+
+        </div>
+
+
+        {% if feedbacks %}
+
+            {% for feedback in feedbacks %}
+
+            <div class="feedback">
+
+                <div class="user">
+
+                    <div class="avatar">
+                        {{ feedback.name[0]|upper }}
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ feedback.name }}
+                        </h3>
+
+                        <p>
+                            📚 {{ feedback.course }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                {% if feedback.rating %}
+
+                <div class="feedback-rating">
+
+                    {% for i in range(feedback.rating|int) %}
+                        ★
+                    {% endfor %}
+
+                </div>
+
+                {% endif %}
+
+
+                <div class="feedback-text">
+
+                    "{{ feedback.feedback }}"
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    💭
+                </div>
+
+                <h3>No feedback yet</h3>
+
+                <p>
+                    Be the first student to share your experience!
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

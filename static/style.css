@@ -1,0 +1,591 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+}
+
+
+/* ================= BACKGROUND ================= */
+
+.background {
+
+    min-height: 100vh;
+
+    padding: 50px 20px;
+
+    background:
+        radial-gradient(circle at top left, #c4b5fd 0%, transparent 30%),
+        radial-gradient(circle at bottom right, #93c5fd 0%, transparent 30%),
+        linear-gradient(135deg, #eef2ff, #f5f3ff, #eff6ff);
+
+}
+
+
+/* ================= CONTAINER ================= */
+
+.container {
+
+    max-width: 850px;
+
+    margin: auto;
+
+    background: rgba(255,255,255,0.88);
+
+    backdrop-filter: blur(15px);
+
+    border-radius: 28px;
+
+    padding: 40px;
+
+    box-shadow:
+        0 25px 60px rgba(79,70,229,0.15);
+
+}
+
+
+/* ================= HEADER ================= */
+
+.header {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+
+}
+
+
+.icon {
+
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    font-size: 35px;
+
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #8b5cf6
+    );
+
+    box-shadow:
+        0 10px 25px rgba(99,102,241,0.3);
+
+}
+
+
+.header h1 {
+
+    font-size: 34px;
+
+    font-weight: 700;
+
+    background: linear-gradient(
+        90deg,
+        #4f46e5,
+        #9333ea
+    );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+}
+
+
+.header p {
+
+    color: #64748b;
+
+    margin-top: 8px;
+
+    font-size: 15px;
+
+}
+
+
+/* ================= FORM ================= */
+
+.feedback-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+}
+
+
+.input-group {
+
+    position: relative;
+
+}
+
+
+.input-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #334155;
+
+}
+
+
+input,
+textarea {
+
+    width: 100%;
+
+    padding: 15px 18px;
+
+    border: 2px solid #e2e8f0;
+
+    border-radius: 14px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    background: #f8fafc;
+
+    transition: all 0.3s ease;
+
+}
+
+
+input:focus,
+textarea:focus {
+
+    border-color: #6366f1;
+
+    background: white;
+
+    box-shadow:
+        0 0 0 4px rgba(99,102,241,0.1);
+
+    transform: translateY(-2px);
+
+}
+
+
+textarea {
+
+    height: 140px;
+
+    resize: vertical;
+
+}
+
+
+/* ================= CHARACTER COUNTER ================= */
+
+.counter {
+
+    text-align: right;
+
+    font-size: 12px;
+
+    color: #94a3b8;
+
+    margin-top: 5px;
+
+}
+
+
+/* ================= RATING ================= */
+
+.rating {
+
+    display: flex;
+
+    flex-direction: row-reverse;
+
+    justify-content: flex-end;
+
+    gap: 5px;
+
+}
+
+
+.rating input {
+
+    display: none;
+
+}
+
+
+.rating label {
+
+    font-size: 32px;
+
+    color: #cbd5e1;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.rating label:hover,
+.rating label:hover ~ label {
+
+    color: #fbbf24;
+
+    transform: scale(1.15);
+
+}
+
+
+.rating input:checked ~ label {
+
+    color: #f59e0b;
+
+}
+
+
+/* ================= BUTTON ================= */
+
+.submit-btn {
+
+    border: none;
+
+    padding: 16px 25px;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #4f46e5,
+        #7c3aed
+    );
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    transition: all 0.3s ease;
+
+    box-shadow:
+        0 10px 25px rgba(79,70,229,0.25);
+
+}
+
+
+.submit-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 30px rgba(79,70,229,0.35);
+
+}
+
+
+.submit-btn:active {
+
+    transform: scale(0.98);
+
+}
+
+
+.arrow {
+
+    font-size: 20px;
+
+    transition: 0.3s;
+
+}
+
+
+.submit-btn:hover .arrow {
+
+    transform: translateX(5px);
+
+}
+
+
+/* ================= SUBMITTED SECTION ================= */
+
+.submitted-section {
+
+    margin-top: 45px;
+
+}
+
+
+.section-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.section-title h2 {
+
+    font-size: 23px;
+
+    color: #1e293b;
+
+}
+
+
+.badge {
+
+    min-width: 30px;
+
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ede9fe;
+
+    color: #6d28d9;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+/* ================= FEEDBACK CARD ================= */
+
+.feedback-card {
+
+    padding: 22px;
+
+    margin-bottom: 15px;
+
+    border-radius: 18px;
+
+    background: linear-gradient(
+        135deg,
+        #f8fafc,
+        #f5f3ff
+    );
+
+    border: 1px solid #e9d5ff;
+
+    transition: all 0.3s ease;
+
+}
+
+
+.feedback-card:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(99,102,241,0.12);
+
+}
+
+
+.student-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+}
+
+
+.avatar {
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: white;
+
+    font-weight: 700;
+
+    font-size: 18px;
+
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #a855f7
+    );
+
+}
+
+
+.student-info h3 {
+
+    color: #1e293b;
+
+    font-size: 16px;
+
+}
+
+
+.student-info p {
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    margin-top: 2px;
+
+}
+
+
+.stars {
+
+    color: #f59e0b;
+
+    margin-top: 12px;
+
+    letter-spacing: 3px;
+
+}
+
+
+.feedback-text {
+
+    margin-top: 12px;
+
+    color: #475569;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+}
+
+
+/* ================= EMPTY STATE ================= */
+
+.empty {
+
+    text-align: center;
+
+    padding: 35px 20px;
+
+    border-radius: 18px;
+
+    border: 2px dashed #ddd6fe;
+
+    background: #faf9ff;
+
+}
+
+
+.empty-icon {
+
+    font-size: 42px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.empty h3 {
+
+    color: #334155;
+
+    margin-bottom: 5px;
+
+}
+
+
+.empty p {
+
+    color: #94a3b8;
+
+    font-size: 13px;
+
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 600px) {
+
+    .background {
+
+        padding: 20px 12px;
+
+    }
+
+    .container {
+
+        padding: 25px 20px;
+
+        border-radius: 20px;
+
+    }
+
+    .header h1 {
+
+        font-size: 27px;
+
+    }
+
+    .header p {
+
+        font-size: 13px;
+
+    }
+
+}
